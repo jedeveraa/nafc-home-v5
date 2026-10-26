@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NAFC | The National Association of Free &amp; Charitable Clinics</title>
+<meta name="description" content="1,400 Free &amp; Charitable Clinics and Pharmacies across the U.S. provide healthcare for uninsured and underinsured people in their communities.">
+<link rel="stylesheet" href="styles.css">
+<!-- xd-motion -->
+<link rel="stylesheet" href="motion-core.css">
+<link rel="stylesheet" href="animations.css">
+<script>
+  /* Motion is on by default. Playwright (the XD diff) and ?static get the plain static layout.
+     ?motion forces motion on, even under Playwright (used by motion_smoke.mjs). */
+  (function () {
+    var q = location.search;
+    if (/[?&]motion\b/.test(q) || (!navigator.webdriver && !/[?&]static\b/.test(q))) document.documentElement.classList.add('js');
+  })();
+</script>
+<script src="motion-core.js" defer></script>
+<script src="main.js" defer></script>
+</head>
+<body>
+
+<svg class="sprite" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+<symbol id="i-dots" viewBox="0 0 10 10">
+<rect width="4" height="4" fill="var(--d1)" opacity="var(--d1o, 1)"/>
+<rect y="6" width="4" height="4" fill="var(--d2)"/>
+<rect x="6" width="4" height="4" fill="var(--d2)"/>
+<rect x="6" y="6" width="4" height="4" fill="var(--d1)" opacity="var(--d1o, 1)"/>
+</symbol>
+<symbol id="i-heart" viewBox="0 0 11.852 10.954" overflow="visible">
+<path d="M 7.927 3.906 C 9.319 2.656 11.47 2.698 12.811 4.041 C 14.152 5.385 14.198 7.526 12.95 8.922 L 7.926 13.954 L 2.902 8.922 C 1.655 7.526 1.701 5.382 3.041 4.041 C 4.383 2.7 6.531 2.654 7.927 3.906 Z" transform="matrix(1 0 0 1 -2 -3)" fill="currentColor"/>
+</symbol>
+<symbol id="i-chev" viewBox="0 0 7 3.5" overflow="visible">
+<path d="M 6 9 L 9.5 12.5 L 13 9" transform="matrix(1 0 0 1 -6 -9)" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</symbol>
+<symbol id="i-pin" viewBox="0 0 11.275 13.61" overflow="visible">
+<path d="M 8.638 13.839 L 11.738 10.738 C 13.45 9.026 13.45 6.249 11.738 4.537 C 10.026 2.825 7.249 2.825 5.537 4.537 C 3.825 6.249 3.825 9.026 5.537 10.738 L 8.638 13.839 Z M 8.638 15.61 L 4.651 11.624 C 2.45 9.422 2.45 5.853 4.651 3.651 C 6.853 1.45 10.422 1.45 12.624 3.651 C 14.826 5.853 14.826 9.422 12.624 11.624 L 8.638 15.61 Z M 8.638 8.89 C 9.33 8.89 9.89 8.33 9.89 7.638 C 9.89 6.946 9.33 6.385 8.638 6.385 C 7.946 6.385 7.385 6.946 7.385 7.638 C 7.385 8.33 7.946 8.89 8.638 8.89 Z M 8.638 10.143 C 7.254 10.143 6.132 9.021 6.132 7.638 C 6.132 6.254 7.254 5.132 8.638 5.132 C 10.021 5.132 11.143 6.254 11.143 7.638 C 11.143 9.021 10.021 10.143 8.638 10.143 Z" transform="matrix(1 0 0 1 -3 -2)" fill="currentColor"/>
+</symbol>
+<symbol id="i-search" viewBox="0 0 16 16" overflow="visible">
+<path d="M 2 7 C 2 4.2 4.2 2 7 2 C 9.8 2 12 4.2 12 7 C 12 9.8 9.8 12 7 12 C 4.2 12 2 9.8 2 7 Z M 14.3 15.7 C 14.7 16.1 15.3 16.1 15.7 15.7 C 16.1 15.3 16.1 14.7 15.7 14.3 L 12.6 11.2 C 13.5 10 14 8.6 14 7 C 14 3.1 10.9 0 7 0 C 3.1 0 0 3.1 0 7 C 0 10.9 3.1 14 7 14 C 8.6 14 10 13.5 11.2 12.6 L 14.3 15.7 Z" fill="currentColor"/>
+</symbol>
+<symbol id="i-lock" viewBox="0 0 10 12.594" overflow="visible">
+<rect x="0" y="0" width="10" height="7" rx="2" transform="matrix(1 0 0 1 0 5.594)" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 7 7.035 L 7 4.797 C 7 3.252 8.252 2 9.797 2 C 11.342 2 12.594 3.252 12.594 4.797 L 12.594 7.035" transform="matrix(1 0 0 1 -4.797 -2)" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+</symbol>
+<symbol id="i-select" viewBox="0 0 19.5 9.75" overflow="visible">
+<path d="M 22.25 6.5 L 12.5 16.25 L 2.75 6.5" transform="matrix(1 0 0 1 -2.75 -6.5)" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+</symbol>
+<symbol id="i-arrow-light" viewBox="0 0 13.157 10.765" overflow="visible">
+<path d="M 40 128 L 52.559 128" transform="matrix(1 0 0 1 -40 -122.618)" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="square" stroke-linejoin="round"/>
+<path d="M 144 56 L 149.382 61.382 L 144 66.765" transform="matrix(1 0 0 1 -136.226 -56)" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="square"/>
+</symbol>
+<symbol id="i-arrow-bold" viewBox="0 0 38.658 38.658" overflow="visible">
+<path d="M 40 128 L 66.577 128" transform="matrix(1 0 0 1 -33.96 -108.671)" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 144 56 L 154.873 66.873 L 144 77.745" transform="matrix(1 0 0 1 -122.255 -47.544)" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</symbol>
+<symbol id="i-arrow-ur" viewBox="0 0 28.991 28.991" overflow="visible">
+<path d="M 0 10.25 L 10.25 0" transform="matrix(0.707 0.707 -0.707 0.707 14.496 7.248)" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 0 0 L 8.328 0 L 8.328 8.328" transform="matrix(0.707 0.707 -0.707 0.707 15.855 8.607)" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+</symbol>
+<symbol id="i-arrow-circle" viewBox="0 0 27.202 27.202" overflow="visible"><circle cx="13.602" cy="13.602" r="11" fill="none" stroke="currentColor" stroke-width="1"/>
+<path d="M 88 128 L 96.501 128" transform="matrix(1 0 0 1 -78.649 -114.399)" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 136 96 L 139.4 99.4 L 136 102.801" transform="matrix(1 0 0 1 -121.549 -85.799)" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+</symbol>
+<symbol id="i-marker" viewBox="0 0 12.61 16.814" overflow="visible">
+<path d="M 5.657 16.474 C 0.886 9.557 0 8.847 0 6.305 C 0 2.823 2.823 0 6.305 0 C 9.787 0 12.61 2.823 12.61 6.305 C 12.61 8.847 11.724 9.557 6.953 16.474 C 6.64 16.927 5.97 16.927 5.657 16.474 Z M 6.305 8.932 C 7.756 8.932 8.932 7.756 8.932 6.305 C 8.932 4.854 7.756 3.678 6.305 3.678 C 4.854 3.678 3.678 4.854 3.678 6.305 C 3.678 7.756 4.854 8.932 6.305 8.932 Z" transform="matrix(1 0 0 1 0 0)" fill="currentColor"/>
+</symbol>
+<symbol id="i-phone" viewBox="0 0 15.511 15.511" overflow="visible">
+<path d="M 14.937 0.735 L 11.786 0.008 C 11.444 -0.071 11.093 0.108 10.953 0.429 L 9.499 3.822 C 9.372 4.119 9.457 4.467 9.708 4.67 L 11.544 6.173 C 10.454 8.496 8.548 10.429 6.176 11.541 L 4.673 9.705 C 4.467 9.453 4.122 9.369 3.825 9.496 L 0.432 10.95 C 0.108 11.092 -0.071 11.444 0.008 11.786 L 0.735 14.937 C 0.811 15.264 1.102 15.5 1.444 15.5 C 9.202 15.5 15.501 9.214 15.501 1.444 C 15.501 1.104 15.267 0.81 14.937 0.735 Z" transform="matrix(1 0 0 1 0.01 0.011)" fill="currentColor"/>
+</symbol>
+<symbol id="i-envelope" viewBox="0 0 17.688 13.266" overflow="visible">
+<path d="M 17.353 68.381 C 17.488 68.273 17.688 68.374 17.688 68.543 L 17.688 75.608 C 17.688 76.523 16.945 77.266 16.03 77.266 L 1.658 77.266 C 0.743 77.266 0 76.523 0 75.608 L 0 68.546 C 0 68.374 0.197 68.277 0.335 68.384 C 1.109 68.985 2.135 69.749 5.659 72.309 C 6.388 72.841 7.618 73.96 8.844 73.953 C 10.077 73.963 11.331 72.82 12.033 72.309 C 15.557 69.749 16.579 68.982 17.353 68.381 Z M 8.844 72.844 C 9.646 72.858 10.799 71.835 11.38 71.414 C 15.964 68.087 16.313 67.797 17.37 66.968 C 17.571 66.812 17.688 66.57 17.688 66.315 L 17.688 65.658 C 17.688 64.743 16.945 64 16.03 64 L 1.658 64 C 0.743 64 0 64.743 0 65.658 L 0 66.315 C 0 66.57 0.117 66.809 0.318 66.968 C 1.375 67.793 1.724 68.087 6.308 71.414 C 6.889 71.835 8.043 72.858 8.844 72.844 Z" transform="matrix(1 0 0 1 0 -64)" fill="currentColor"/>
+</symbol>
+<symbol id="i-instagram" viewBox="0 0 16.848 16.848" overflow="visible">
+<path d="M 10.425 7.897 C 9.029 7.897 7.898 9.028 7.898 10.424 C 7.898 11.82 9.029 12.951 10.425 12.951 C 11.821 12.951 12.952 11.82 12.952 10.424 C 12.952 9.028 11.821 7.897 10.425 7.897 Z M 10.425 6.212 C 12.75 6.212 14.637 8.097 14.637 10.424 C 14.637 12.749 12.752 14.636 10.425 14.636 C 8.1 14.636 6.213 12.751 6.213 10.424 C 6.213 8.099 8.097 6.212 10.425 6.212 Z M 15.901 6.001 C 15.901 6.582 15.428 7.054 14.848 7.054 C 14.266 7.054 13.795 6.581 13.795 6.001 C 13.795 5.42 14.267 4.948 14.848 4.948 C 15.427 4.948 15.901 5.42 15.901 6.001 Z M 10.425 3.685 C 8.34 3.685 8.001 3.69 7.031 3.733 C 6.371 3.764 5.928 3.853 5.516 4.013 C 5.151 4.155 4.887 4.324 4.606 4.605 C 4.324 4.887 4.155 5.15 4.014 5.516 C 3.854 5.928 3.765 6.37 3.734 7.03 C 3.691 7.96 3.686 8.285 3.686 10.424 C 3.686 12.508 3.691 12.848 3.734 13.818 C 3.765 14.478 3.854 14.921 4.014 15.332 C 4.156 15.698 4.326 15.962 4.605 16.242 C 4.888 16.525 5.152 16.694 5.515 16.834 C 5.931 16.995 6.373 17.084 7.031 17.114 C 7.961 17.158 8.286 17.163 10.425 17.163 C 12.509 17.163 12.849 17.158 13.819 17.114 C 14.477 17.084 14.921 16.994 15.333 16.835 C 15.698 16.693 15.963 16.523 16.243 16.244 C 16.526 15.96 16.695 15.697 16.835 15.334 C 16.996 14.919 17.085 14.476 17.115 13.818 C 17.159 12.888 17.164 12.563 17.164 10.424 C 17.164 8.339 17.159 8 17.115 7.03 C 17.084 6.371 16.995 5.927 16.836 5.515 C 16.694 5.151 16.525 4.886 16.244 4.605 C 15.961 4.323 15.699 4.154 15.333 4.013 C 14.921 3.853 14.478 3.764 13.819 3.733 C 12.889 3.69 12.564 3.685 10.425 3.685 Z M 10.425 2 C 12.713 2 12.999 2.008 13.898 2.051 C 14.794 2.092 15.406 2.234 15.943 2.442 C 16.498 2.656 16.967 2.946 17.435 3.414 C 17.903 3.882 18.192 4.352 18.407 4.906 C 18.614 5.443 18.756 6.055 18.798 6.951 C 18.838 7.85 18.849 8.135 18.849 10.424 C 18.849 12.713 18.841 12.998 18.798 13.897 C 18.757 14.793 18.614 15.405 18.407 15.942 C 18.193 16.497 17.903 16.966 17.435 17.434 C 16.967 17.902 16.496 18.191 15.943 18.406 C 15.406 18.613 14.794 18.755 13.898 18.797 C 12.999 18.837 12.713 18.848 10.425 18.848 C 8.136 18.848 7.851 18.84 6.952 18.797 C 6.056 18.756 5.445 18.613 4.907 18.406 C 4.353 18.192 3.883 17.902 3.415 17.434 C 2.947 16.966 2.658 16.495 2.443 15.942 C 2.235 15.405 2.094 14.793 2.052 13.897 C 2.012 12.998 2.001 12.713 2.001 10.424 C 2.001 8.135 2.009 7.85 2.052 6.951 C 2.093 6.054 2.235 5.443 2.443 4.906 C 2.657 4.352 2.947 3.882 3.415 3.414 C 3.883 2.946 4.353 2.657 4.907 2.442 C 5.444 2.234 6.055 2.093 6.952 2.051 C 7.851 2.011 8.136 2 10.425 2 Z" transform="matrix(1 0 0 1 -2.001 -2)" fill="currentColor"/>
+</symbol>
+<symbol id="i-flickr" viewBox="0 0 16.334 7.424" overflow="visible">
+<path d="M 8.424 10.712 C 8.424 12.762 6.762 14.424 4.712 14.424 C 2.662 14.424 1 12.762 1 10.712 C 1 8.662 2.662 7 4.712 7 C 6.762 7 8.424 8.662 8.424 10.712 Z M 17.334 10.712 C 17.334 12.762 15.672 14.424 13.621 14.424 C 11.571 14.424 9.909 12.762 9.909 10.712 C 9.909 8.662 11.571 7 13.621 7 C 15.672 7 17.334 8.662 17.334 10.712 Z" transform="matrix(1 0 0 1 -1 -7)" fill="currentColor"/>
+</symbol>
+<symbol id="i-tiktok" viewBox="0 0 16.63 18.375" overflow="visible">
+<path d="M 10.052 1.8 L 10.052 7.693 C 9.68 7.624 9.296 7.588 8.904 7.588 C 5.428 7.588 2.61 10.406 2.61 13.882 C 2.61 17.358 5.428 20.175 8.904 20.175 C 12.38 20.175 15.197 17.358 15.197 13.882 L 15.197 10.449 C 16.149 10.853 17.187 11.079 18.321 11.079 L 19.24 11.079 L 19.24 5.934 L 18.321 5.934 C 16.572 5.934 15.197 4.522 15.197 2.719 L 15.197 1.8 L 10.052 1.8 Z M 11.89 3.638 L 13.44 3.638 C 13.802 5.677 15.351 7.309 17.402 7.688 L 17.402 9.176 C 16.449 9.036 15.588 8.678 14.79 8.144 L 13.36 7.187 L 13.36 13.882 C 13.36 16.343 11.365 18.338 8.904 18.338 C 6.443 18.338 4.448 16.343 4.448 13.882 C 4.448 11.421 6.443 9.426 8.904 9.426 C 8.981 9.426 9.058 9.428 9.134 9.431 L 9.134 10.904 C 9.058 10.899 8.981 10.896 8.904 10.896 C 7.255 10.896 5.918 12.233 5.918 13.882 C 5.918 15.531 7.255 16.868 8.904 16.868 C 10.553 16.868 11.89 15.531 11.89 13.882 C 11.89 10.467 11.889 7.052 11.89 3.638 Z M 7.755 13.882 C 7.755 13.247 8.27 12.733 8.904 12.733 C 9.538 12.733 10.052 13.247 10.052 13.882 C 10.052 14.516 9.538 15.03 8.904 15.03 C 8.27 15.03 7.755 14.516 7.755 13.882 Z" transform="matrix(1 0 0 1 -2.61 -1.8)" fill="currentColor"/>
+</symbol>
+<symbol id="i-youtube" viewBox="0 0 16.417 11.566" overflow="visible">
+<path d="M 16.074 6.533 C 15.885 5.822 15.329 5.263 14.622 5.072 C 13.342 4.727 8.208 4.727 8.208 4.727 C 8.208 4.727 3.075 4.727 1.795 5.072 C 1.088 5.262 0.532 5.822 0.343 6.533 C 0 7.822 0 10.51 0 10.51 C 0 10.51 0 13.199 0.343 14.487 C 0.532 15.198 1.088 15.758 1.795 15.948 C 3.075 16.293 8.208 16.293 8.208 16.293 C 8.208 16.293 13.342 16.293 14.622 15.948 C 15.329 15.758 15.885 15.198 16.074 14.487 C 16.417 13.199 16.417 10.51 16.417 10.51 C 16.417 10.51 16.417 7.822 16.074 6.533 Z M 6.529 12.951 L 6.529 8.069 L 10.82 10.51 L 6.529 12.951 Z" transform="matrix(1 0 0 1 0 -4.727)" fill="currentColor"/>
+</symbol>
+<symbol id="i-facebook" viewBox="0 0 8.677 16.201" overflow="visible">
+<path d="M 30.999 9.113 L 31.449 6.181 L 28.635 6.181 L 28.635 4.278 C 28.635 3.476 29.028 2.694 30.288 2.694 L 31.567 2.694 L 31.567 0.198 C 31.567 0.198 30.407 0 29.297 0 C 26.98 0 25.465 1.404 25.465 3.947 L 25.465 6.181 L 22.89 6.181 L 22.89 9.113 L 25.465 9.113 L 25.465 16.201 L 28.635 16.201 L 28.635 9.113 L 30.999 9.113 Z" transform="matrix(1 0 0 1 -22.89 0)" fill="currentColor"/>
+</symbol>
+<symbol id="i-linkedin" viewBox="0 0 15.748 15.748" overflow="visible">
+<path d="M 16.418 16.42 L 14.086 16.42 L 14.086 12.766 C 14.086 11.894 14.068 10.773 12.871 10.773 C 11.655 10.773 11.469 11.721 11.469 12.702 L 11.469 16.42 L 9.137 16.42 L 9.137 8.906 L 11.377 8.906 L 11.377 9.93 L 11.407 9.93 C 11.72 9.339 12.481 8.716 13.619 8.716 C 15.982 8.716 16.419 10.271 16.419 12.295 L 16.419 16.42 L 16.418 16.42 Z M 6.503 7.877 C 5.752 7.877 5.149 7.27 5.149 6.522 C 5.149 5.776 5.753 5.169 6.503 5.169 C 7.251 5.169 7.857 5.776 7.857 6.522 C 7.857 7.27 7.25 7.877 6.503 7.877 Z M 7.672 16.42 L 5.334 16.42 L 5.334 8.906 L 7.672 8.906 L 7.672 16.42 Z M 17.585 3 L 4.163 3 C 3.521 3 3.001 3.508 3.001 4.135 L 3.001 17.614 C 3.001 18.241 3.521 18.748 4.163 18.748 L 17.583 18.748 C 18.224 18.748 18.749 18.241 18.749 17.614 L 18.749 4.135 C 18.749 3.508 18.224 3 17.583 3 L 17.585 3 Z" transform="matrix(1 0 0 1 -3.001 -3)" fill="currentColor"/>
+</symbol>
+</svg>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="#"><img src="assets/logos/nafc-logo-header.png" width="243" height="112" alt="NAFC, The National Association of Free &amp; Charitable Clinics"></a>
+
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu"><span class="menu-toggle__bars" aria-hidden="true"></span><span class="menu-toggle__label">Menu</span></button>
+
+    <div class="site-header__menu" id="site-menu">
+    <div class="utility">
+      <button class="utility__lang" type="button"><span>English</span><svg class="i-chev"><use href="#i-chev"/></svg></button>
+      <span class="utility__divider" aria-hidden="true"></span>
+      <a class="utility__login" href="#"><svg class="i-lock"><use href="#i-lock"/></svg><span>Member login</span></a>
+      <a class="utility__search" href="#" aria-label="Search"><svg class="i-search"><use href="#i-search"/></svg></a>
+    </div>
+
+    <nav class="main-nav" aria-label="Main">
+      <ul>
+        <li><a href="#">Get Care</a></li>
+        <li><a href="#">Get Involved</a><svg class="i-chev"><use href="#i-chev"/></svg></li>
+        <li><a href="#">Our Impact</a><svg class="i-chev"><use href="#i-chev"/></svg></li>
+        <li><a href="#">About</a><svg class="i-chev"><use href="#i-chev"/></svg></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="header-ctas">
+      <a class="hbtn hbtn--donate" href="#"><svg class="i-heart"><use href="#i-heart"/></svg><span>Donate Now</span></a>
+      <a class="hbtn hbtn--find" href="#"><svg class="i-pin"><use href="#i-pin"/></svg><span>Find a Clinic</span></a>
+    </div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <div class="first-screen">
+  <section class="hero">
+    <img class="hero__bg m-zoom" data-parallax="0.25" src="assets/img/hero.jpg" width="1440" height="1152" alt="">
+    <svg class="hero__shade" aria-hidden="true" preserveAspectRatio="none">
+      <defs><linearGradient id="g-hero" gradientUnits="userSpaceOnUse" x1="100%" y1="27.77%" x2="0" y2="100%"><stop offset="0" stop-color="#111581" stop-opacity="0"/><stop offset="1" stop-color="#111581"/></linearGradient></defs>
+      <rect width="100%" height="100%" fill="url(#g-hero)"/>
+    </svg>
+    <div class="wrap" data-fade-out="-0.12">
+      <p class="eyebrow eyebrow--hero" data-load style="--d:0"><svg class="dots"><use href="#i-dots"/></svg>Free &amp; Charitable Clinics Network</p>
+      <h1 class="hero__title" data-split="load">The National Association of Free &amp; Charitable Clinics</h1>
+      <p class="hero__lead" data-load style="--d:5">1,400 Free &amp; Charitable Clinics and Pharmacies across the U.S. provide healthcare for uninsured and underinsured people in their communities.</p>
+    </div>
+  </section>
+
+  <section class="finder" aria-labelledby="finder-title">
+    <form class="wrap finder__form" action="#" data-load style="--d:7">
+      <h2 class="finder__title" id="finder-title">Find Healthcare <br>Services:</h2>
+      <div class="field field--location">
+        <label for="f-location">Location</label>
+        <input id="f-location" type="text" placeholder="Your city and state, or ZIP code">
+      </div>
+      <div class="field field--clinic">
+        <label for="f-clinic">CLinic</label>
+        <input id="f-clinic" type="text" placeholder="Clinic name">
+      </div>
+      <div class="field field--distance">
+        <label for="f-distance">Distance</label>
+        <select id="f-distance">
+          <option>10 miles</option>
+          <option>25 miles</option>
+          <option>50 miles</option>
+        </select>
+        <svg class="i-select" aria-hidden="true"><use href="#i-select"/></svg>
+      </div>
+      <button class="finder__submit" type="submit">FIND</button>
+    </form>
+  </section>
+  </div>
+
+  <section class="start" aria-labelledby="start-title" data-pin-steps="400">
+    <div class="wrap">
+      <div class="start__main">
+        <p class="eyebrow" data-reveal><svg class="dots"><use href="#i-dots"/></svg>Free &amp; Charitable Clinics Network</p>
+        <h2 class="start__title" id="start-title" data-split>Where do you want to start?</h2>
+        <ul class="paths">
+          <li class="paths__item paths__item--active"><a href="#">I need care<svg class="i-arrow-bold"><use href="#i-arrow-bold"/></svg></a></li>
+          <!-- PLACEHOLDER: photos and card copy for paths 2-4 (data-*) are stand-ins until NAFC sends real content -->
+          <li class="paths__item paths__item--2" data-img="assets/img/symposium-crowd.jpg" data-alt="Clinic volunteers and staff together at an NAFC event" data-title="Volunteer" data-text="Find a clinic near you that needs doctors, nurses and front-desk help, and see how to sign up."><a href="#">I want to <em>volunteer</em></a></li>
+          <li class="paths__item paths__item--3" data-img="assets/img/hero.jpg" data-alt="A pharmacist talks with a patient at a charitable pharmacy" data-title="Become a member" data-text="What membership gives a clinic or pharmacy, what it costs, and how to apply."><a href="#">I want to become a <em>member</em></a></li>
+          <li class="paths__item paths__item--4" data-img="assets/img/card-standards.jpg" data-alt="Clinic staff reviewing care standards together" data-title="Become a partner" data-text="How companies and foundations work with the NAFC to fund care, medicine and supplies."><a href="#">I want to become a <em>partner</em></a></li>
+        </ul>
+      </div>
+      <figure class="start__photo" data-reveal="clip"><img src="assets/img/start-clinic.jpg" width="967" height="725" alt="A clinician reviews an ultrasound screen with a patient"></figure>
+      <article class="start__card" data-reveal>
+        <div class="start__card-body">
+          <h3>I need care</h3>
+          <p>What these clinics actually offer, who qualifies, and what to bring to a first visit.</p>
+          <a class="readmore" href="#">Read More<svg class="i-arrow-light"><use href="#i-arrow-light"/></svg></a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="numbers" aria-labelledby="numbers-title" data-pin-steps="400">
+    <div class="numbers__stage">
+    <div class="numbers__bg"><img src="assets/img/numbers-bg.png" width="1440" height="810" alt=""></div>
+    <svg class="numbers__shade" aria-hidden="true" preserveAspectRatio="none">
+      <defs><linearGradient id="g-numbers" gradientUnits="userSpaceOnUse" x1="100%" y1="27.77%" x2="0" y2="100%"><stop offset="0" stop-color="#111581" stop-opacity="0.776"/><stop offset="1" stop-color="#111581"/></linearGradient></defs>
+      <rect width="100%" height="100%" fill="url(#g-numbers)"/>
+    </svg>
+    <div class="wrap">
+      <p class="eyebrow eyebrow--white" data-reveal><svg class="dots"><use href="#i-dots"/></svg>BY THE NUMBERS</p>
+      <h2 class="numbers__title" id="numbers-title" data-split>Building a healthy America, one person at a time.</h2>
+      <p class="numbers__lead" data-reveal>The NAFC is the only nonprofit whose mission is focused solely on free and charitable clinics, charitable pharmacies, and the medically underserved people who depend on them.</p>
+      <a class="btn btn--white numbers__btn" href="#" data-reveal>See Reports</a>
+
+      <p class="bignum" aria-hidden="true"><span class="bignum__value">1,400</span><span class="bignum__plus">+</span></p>
+      <p class="bignum__caption">Free and charitable clinics and pharmacies</p>
+
+      <dl class="stats">
+        <div class="stats__item stats__item--active" data-value="1400" data-decimals="0" data-suffix="" data-plus="+" data-format="comma"><dt>1400+</dt><dd>Free and charitable clinics and pharmacies</dd></div>
+        <div class="stats__item stats__item--2" data-value="1.9" data-decimals="1" data-suffix="M" data-plus=""><dt>1.9M</dt><dd>Patients served each year</dd></div>
+        <div class="stats__item stats__item--3" data-value="171" data-decimals="0" data-suffix="k" data-plus="+"><dt>171k+</dt><dd>Volunteers each year</dd></div>
+        <div class="stats__item stats__item--4" data-value="8.2" data-decimals="1" data-suffix="M" data-plus=""><dt>8.2M</dt><dd>Patient visits each year</dd></div>
+      </dl>
+    </div>
+    </div>
+  </section>
+
+  <section class="impact" aria-labelledby="impact-title">
+    <div class="wrap">
+      <div class="impact__head">
+        <div>
+          <p class="eyebrow" data-reveal><svg class="dots"><use href="#i-dots"/></svg>OUR IMPACT</p>
+          <h2 class="impact__title" id="impact-title" data-split>How the NAFC makes a difference</h2>
+        </div>
+        <div class="impact__intro">
+          <p data-reveal>Eight programs, grouped by the job they do. Every one of them is open to member clinics and pharmacies.</p>
+          <a class="btn btn--outline" href="#" data-reveal>Become a Member</a>
+        </div>
+      </div>
+
+      <div class="programs">
+        <article class="program program--navy" data-reveal>
+          <div class="program__media" data-reveal="clip">
+            <img src="assets/img/card-funding.png" width="428" height="283" alt="">
+            <svg aria-hidden="true" preserveAspectRatio="none"><defs><linearGradient id="g-card-1" gradientUnits="userSpaceOnUse" x1="63.33%" y1="0" x2="63.95%" y2="100%"><stop offset="0" stop-color="#111581" stop-opacity="0.776"/><stop offset="1" stop-color="#111581"/></linearGradient></defs><rect width="100%" height="100%" fill="url(#g-card-1)"/></svg>
+          </div>
+          <h3 class="program__title">Funding <br>and Relief</h3>
+          <p class="program__desc">Money and medication moving to the clinics that need them, including after a disaster.</p>
+          <ul class="program__links">
+            <li><a href="#">Funding</a><svg class="i-arrow-ur"><use href="#i-arrow-ur"/></svg></li>
+            <li><a href="#">Clinic Support</a></li>
+            <li><a href="#">Disaster Relief</a></li>
+            <li><a href="#">Charitable Pharmacies of America</a></li>
+          </ul>
+        </article>
+
+        <article class="program program--green" data-reveal>
+          <div class="program__media" data-reveal="clip">
+            <img src="assets/img/card-standards.jpg" width="428" height="241" alt="">
+            <svg aria-hidden="true" preserveAspectRatio="none"><defs><linearGradient id="g-card-2" gradientUnits="userSpaceOnUse" x1="63.33%" y1="0" x2="63.95%" y2="100%"><stop offset="0" stop-color="#139034" stop-opacity="0.78"/><stop offset="1" stop-color="#139034"/></linearGradient></defs><rect width="100%" height="100%" fill="url(#g-card-2)"/></svg>
+          </div>
+          <h3 class="program__title program__title--narrow">Standards <br>and Training</h3>
+          <p class="program__desc">The quality floor for member clinics, plus the education that keeps teams current.</p>
+          <ul class="program__links">
+            <li><a href="#">Quality Standards</a><svg class="i-arrow-ur"><use href="#i-arrow-ur"/></svg></li>
+            <li><a href="#">Education and Training</a></li>
+            <li><a href="#">Clinic Support</a></li>
+          </ul>
+        </article>
+
+        <article class="program program--navy" data-reveal>
+          <div class="program__media" data-reveal="clip">
+            <img src="assets/img/card-advocacy.jpg" width="428" height="303" alt="">
+            <svg aria-hidden="true" preserveAspectRatio="none"><defs><linearGradient id="g-card-3" gradientUnits="userSpaceOnUse" x1="63.33%" y1="0" x2="63.95%" y2="100%"><stop offset="0" stop-color="#111581" stop-opacity="0.776"/><stop offset="1" stop-color="#111581"/></linearGradient></defs><rect width="100%" height="100%" fill="url(#g-card-3)"/></svg>
+          </div>
+          <h3 class="program__title">Advocacy <br>and Equity</h3>
+          <p class="program__desc">Making the case in Washington for the people these clinics serve.</p>
+          <ul class="program__links">
+            <li><a href="#">Public Policy</a><svg class="i-arrow-ur"><use href="#i-arrow-ur"/></svg></li>
+            <li><a href="#">Health Equity</a></li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="donate" aria-labelledby="donate-title">
+    <div class="donate__bg" aria-hidden="true">
+      <svg class="donate__blobs" viewBox="-300 -300 1328 1139" width="1328" height="1139">
+        <defs>
+          <!-- XD background blur 50, brightness +15 (additive), then the #ECF9FF fill at 74% on top -->
+          <filter id="f-donate" x="0" y="0" width="1328" height="1139" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+            <feGaussianBlur id="f-donate-blur" stdDeviation="35" edgeMode="duplicate"/>
+            <feComponentTransfer><feFuncR type="linear" slope="1" intercept="0.149"/><feFuncG type="linear" slope="1" intercept="0.149"/><feFuncB type="linear" slope="1" intercept="0.149"/></feComponentTransfer>
+          </filter>
+        </defs>
+        <g filter="url(#f-donate)">
+          <rect x="-300" y="-300" width="1328" height="1139" fill="#fff"/>
+          <g opacity="0.53">
+            <ellipse cx="-1.5" cy="-35" rx="365.5" ry="377" fill="#139034"/>
+            <ellipse cx="849" cy="269.5" rx="347" ry="357.5" fill="#111581"/>
+            <path d="M 327.014 8.11 C 339.48 -14.263 371.121 -13.99 383.965 8.602 L 733.296 623.043 C 746.139 645.633 730.556 673.596 705.246 673.377 L 16.877 667.435 C -8.433 667.217 -24.489 638.981 -12.024 616.609 L 327.014 8.11 Z" transform="matrix(0.9563 0.29237 -0.29237 0.9563 114.847 254.931)" fill="#ff5c00"/>
+          </g>
+        </g>
+      </svg>
+    </div>
+    <figure class="donate__photo" data-reveal="clip"><img src="assets/img/donate.jpg" width="809" height="539" alt="A nurse prepares an older patient's arm at a free clinic"></figure>
+    <div class="wrap">
+      <p class="eyebrow" data-reveal><svg class="dots"><use href="#i-dots"/></svg>Donate</p>
+      <h2 class="donate__title" id="donate-title" data-split>A donation here turns into a visit somewhere.</h2>
+      <p class="donate__lead" data-reveal>Gifts to the NAFC fund the clinics and charitable pharmacies that treat people who have no insurance and no other option. Most of them run on volunteers and donations alone.</p>
+      <a class="btn btn--navy donate__btn" href="#" data-reveal><svg class="i-heart"><use href="#i-heart"/></svg><span>Donate Now</span></a>
+    </div>
+  </section>
+
+  <section class="symposium" aria-labelledby="symposium-title">
+    <svg class="symposium__bg" aria-hidden="true" preserveAspectRatio="none">
+      <defs><radialGradient id="g-symposium" cx="0.07912" cy="0.01849" r="0.38892" fx="0.07912" fy="0.01849" gradientTransform="matrix(1 0 0 2.151565 0 -0.167847)"><stop offset="0" stop-color="#111581"/><stop offset="1" stop-color="#010460"/></radialGradient></defs>
+      <rect width="100%" height="100%" fill="url(#g-symposium)"/>
+    </svg>
+    <div class="symposium__grid" aria-hidden="true"></div>
+    <div class="wrap">
+      <figure class="symposium__photo">
+        <div class="symposium__crop" data-reveal="clip"><img src="assets/img/symposium-crowd.jpg" width="904" height="678" alt="A large group of clinic volunteers and staff at the NAFC symposium"></div>
+        <dl class="symposium__meta" data-reveal>
+          <div><dt>Date</dt><dd>Sept 26-27, 2027</dd></div>
+          <div><dt>Location</dt><dd>Phoenix, Arizona</dd></div>
+        </dl>
+      </figure>
+      <div class="symposium__body">
+        <p class="eyebrow eyebrow--white" data-reveal><svg class="dots"><use href="#i-dots"/></svg>2027 Charitable Healthcare Symposium</p>
+        <h2 class="symposium__title" id="symposium-title" data-split>Three days.<br>One network.<br>All in one room.</h2>
+        <div class="countdown" role="timer" aria-label="Time until the symposium">
+          <div class="countdown__box" data-reveal><strong>338</strong><span>Days to go</span></div>
+          <div class="countdown__box countdown__box--hours" data-reveal><strong>02</strong><span>Hours</span></div>
+          <div class="countdown__box countdown__box--mins" data-reveal><strong>43</strong><span>minutes</span></div>
+        </div>
+        <a class="btn btn--white symposium__btn" href="#" data-reveal>See the symposium</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="resources" aria-labelledby="resources-title">
+    <div class="wrap">
+      <div class="resources__deco" aria-hidden="true"><img src="assets/deco-logo.svg" width="443.715" height="443.467" alt=""></div>
+      <p class="eyebrow" data-reveal><svg class="dots"><use href="#i-dots"/></svg>Resource Library</p>
+      <h2 class="resources__title" id="resources-title" data-split>What is happening in the network.</h2>
+
+      <article class="feature" data-reveal>
+        <img class="feature__img" data-reveal="clip" src="assets/img/res-back-to-school.webp" width="672" height="401" alt="A girl in a face mask shows a bandage on her arm after a vaccine">
+        <div class="feature__body">
+          <p class="tags"><span class="tag">BLOG</span><span class="tags__topic">Mental Health</span></p>
+          <h3 class="feature__title"><a href="#">Back-to-school healthcare access for uninsured families</a></h3>
+          <p class="feature__desc">Physicals, vaccines and vision screenings are the difference between a child starting the year ready and starting it behind. Here is how clinics close that gap.</p>
+        </div>
+      </article>
+
+      <article class="post post--1" data-reveal>
+        <p class="tags"><span class="tag tag--news">NEWS</span><span class="tags__topic">Mental Health</span></p>
+        <h3 class="post__title"><a href="#">Patient safety in healthcare: how clinics support safer care</a></h3>
+        <img class="post__thumb" data-reveal="clip" src="assets/img/res-patient-safety.jpg" width="205" height="137" alt="">
+      </article>
+      <article class="post post--2" data-reveal>
+        <p class="tags"><span class="tag tag--news">NEWS</span><span class="tags__topic">Nutrition</span></p>
+        <h3 class="post__title"><a href="#">Patient safety in healthcare: how clinics support safer care</a></h3>
+        <img class="post__thumb" data-reveal="clip" src="assets/img/res-data-report.jpg" width="244" height="137" alt="">
+      </article>
+      <article class="post post--3" data-reveal>
+        <p class="tags"><span class="tag">BLOG</span><span class="tags__topic">Funding</span></p>
+        <h3 class="post__title"><a href="#">Patient safety in healthcare: how clinics support safer care</a></h3>
+        <img class="post__thumb" data-reveal="clip" src="assets/img/res-skin-health.webp" width="207" height="137" alt="">
+      </article>
+      <div class="browse" data-reveal>
+        <p>Browse other topics here</p>
+        <a class="btn btn--white browse__btn" href="#">See All Resources</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="partners" aria-labelledby="partners-title">
+    <div class="wrap">
+      <h2 class="partners__title" id="partners-title" data-split>NAFC Partners</h2>
+      <a class="partners__all" href="#" data-reveal>See All Partners<svg class="i-arrow-light"><use href="#i-arrow-light"/></svg></a>
+      <ul class="logos">
+        <li class="logo-1"><img src="assets/logos/partner-doximity.png" alt="doximity"></li>
+        <li class="logo-2"><img src="assets/logos/partner-doxyme.png" alt="doxy.me"></li>
+        <li class="logo-3"><img src="assets/logos/partner-aafp.png" alt="AAFP Foundation"></li>
+        <li class="logo-4"><img src="assets/logos/partner-afaxys.png" alt="afaxys"></li>
+        <li class="logo-5"><img src="assets/logos/partner-americares.png" alt="americares"></li>
+        <li class="logo-6"><img src="assets/logos/partner-athenahealth.png" alt="athenahealth"></li>
+        <li class="logo-7"><img src="assets/logos/partner-ams.png" alt="AMS Atlantic Medical Solutions"></li>
+        <li class="logo-8"><img src="assets/logos/partner-bd.png" alt="BD"></li>
+      </ul>
+      <span class="logos__fade logos__fade--left" aria-hidden="true"></span>
+      <span class="logos__fade logos__fade--right" aria-hidden="true"></span>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <img class="site-footer__logo" src="assets/logos/nafc-logo-footer.png" width="204" height="103" alt="NAFC, The National Association of Free &amp; Charitable Clinics">
+
+    <nav class="fcol fcol--links" data-reveal aria-labelledby="f-links">
+      <h2 class="fcol__title" id="f-links">Quick Links</h2>
+      <ul>
+        <li><a href="#">Our Impact</a></li>
+        <li><a href="#">Get Involved</a></li>
+        <li><a href="#">Resources</a></li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">Member Area</a></li>
+      </ul>
+    </nav>
+
+    <div class="fcol fcol--contact" data-reveal>
+      <h2 class="fcol__title">Contact Us</h2>
+      <dl>
+        <div class="contact contact--email"><span class="contact__icon"><svg class="i-envelope"><use href="#i-envelope"/></svg></span><dt>Email:</dt><dd><a href="mailto:info@nafcclinics.org">info@nafcclinics.org</a></dd></div>
+        <div class="contact contact--phone"><span class="contact__icon"><svg class="i-phone"><use href="#i-phone"/></svg></span><dt>Phone</dt><dd><a href="tel:7036477427">(703) 647-7427</a></dd></div>
+        <div class="contact contact--address"><span class="contact__icon"><svg class="i-marker"><use href="#i-marker"/></svg></span><dt>Address</dt><dd>1800 Diagonal Road, Suite 600 Alexandria, VA 22314</dd></div>
+      </dl>
+    </div>
+
+    <div class="fcol fcol--social" data-reveal>
+      <h2 class="fcol__title">Follow Us</h2>
+      <ul class="social">
+        <li class="social--fb"><a href="#" aria-label="Facebook"><svg class="i-facebook"><use href="#i-facebook"/></svg></a></li>
+        <li class="social--tt"><a href="#" aria-label="TikTok"><span class="social__mask"><svg class="i-tiktok"><use href="#i-tiktok"/></svg></span></a></li>
+        <li class="social--ig"><a href="#" aria-label="Instagram"><svg class="i-instagram"><use href="#i-instagram"/></svg></a></li>
+        <li class="social--fl"><a href="#" aria-label="Flickr"><svg class="i-flickr"><use href="#i-flickr"/></svg></a></li>
+        <li class="social--yt"><a href="#" aria-label="YouTube"><svg class="i-youtube"><use href="#i-youtube"/></svg></a></li>
+        <li class="social--li"><a href="#" aria-label="LinkedIn"><svg class="i-linkedin"><use href="#i-linkedin"/></svg></a></li>
+      </ul>
+      <p class="taxid">The NAFC Tax ID is <b>56-2273242</b></p>
+    </div>
+
+    <div class="site-footer__bottom">
+      <p class="copyright">© The National Association of Free &amp; Charitable Clinics © 2026</p>
+      <p class="credits"><a class="credits__terms" href="#">Terms and Privacy Policy</a><span class="credits__dot" aria-hidden="true"></span><span class="credits__powered">POWERED BY <a href="https://one18media.com"><b>ONE18MEDIA</b></a></span></p>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js" defer></script>
+</body>
+</html>

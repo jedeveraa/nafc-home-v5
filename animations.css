@@ -1,0 +1,334 @@
+/* =========================================================
+   NAFC Home v5: project motion (xd-motion skill)
+   Loads after motion-core.css. Everything is scoped to html.js,
+   so ?static and the Playwright XD diff get the plain build.
+   styles.css is never edited for motion.
+   ========================================================= */
+
+:root {
+  --mint: #139034;          /* client picked the brand green for every "mint" accent */
+  --row-hover: #F2F6F9;
+}
+
+/* ---------- header: fixed, hides while scrolling down, back on scroll up ---------- */
+
+.js body { padding-top: var(--header-h); }   /* keeps the static position of everything below */
+.js .site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 60;
+  transition: translate .5s var(--ease-out), box-shadow .4s var(--ease);
+}
+.js .site-header.is-scrolled { box-shadow: 0 14px 40px -24px rgba(1, 4, 96, .6); }
+.js .site-header.is-hidden { translate: 0 -100%; box-shadow: none; }
+
+/* ---------- hero intro: the photo fills the first screen, then the finder bar rises in ---------- */
+/* The hero starts at full screen height, so the finder waits just under the fold. Its min-height then drops to 0,
+   the hero shrinks back to the static flex size and the bar slides up into place. Pure CSS, so it can't get stuck.
+   Phones are skipped: their finder sits below the fold anyway. main.js adds .no-intro on a reload mid-page. */
+
+@media (min-width: 640px) {
+  .js:not(.no-intro) .hero { animation: hero-intro 1.2s var(--ease-io) 1.2s backwards; }
+  .js:not(.no-intro) .finder__form[data-load] { animation-delay: 1.75s; }   /* form rises once the bar is in */
+}
+@keyframes hero-intro {
+  from { min-height: calc(100svh - var(--header-h)); }
+  to { min-height: 0; }
+}
+
+/* ---------- buttons: a brand green glow rotates around the edge on hover ---------- */
+/* The <span class="glow"> is added by main.js. Its ::before is a 2px conic ring just outside the button.
+   The span itself adds two soft green drop-shadows (they follow only the bright arcs) and a mask that cuts out
+   the button area, so the glow spreads outward and the button face never gets tinted.
+   The spin keeps its angle while paused, so hovering again doesn't jump back to the start. */
+
+@property --glow-a { syntax: "<angle>"; inherits: true; initial-value: 0deg; }
+
+.js :is(.btn, .hbtn, .finder__submit) {
+  --glow: var(--green);
+  --glow-hi: #6BE38F;   /* lighter tint of the brand green for the leading edge */
+}
+.js :is(.btn, .hbtn, .finder__submit):not(.browse__btn) { position: relative; }
+.js :is(.btn, .hbtn, .finder__submit):not([data-reveal]) { transition: scale .25s var(--ease); }
+.js :is(.btn, .hbtn, .finder__submit):active { scale: .97; }
+
+.js .glow {
+  position: absolute;
+  inset: -26px;
+  margin: 0;       /* .hbtn span / .donate__btn span push the label down with margin-top; not the glow */
+  padding: 26px;   /* content box = the button */
+  pointer-events: none;
+  opacity: 0;
+  filter: drop-shadow(0 0 3px rgba(19, 144, 52, .7)) drop-shadow(0 0 12px rgba(19, 144, 52, .35));
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  transition: opacity .45s var(--ease);
+  animation: glow-spin 4.5s linear infinite paused;
+}
+.js .btn--outline .glow { inset: -28px; }   /* insets start inside its 2px border: step out so the ring clears it */
+.js .glow::before {
+  content: "";
+  position: absolute;
+  inset: 24px;
+  padding: 2px;
+  background: conic-gradient(from var(--glow-a),
+    transparent 0deg, var(--glow) 70deg, var(--glow-hi) 115deg, transparent 150deg,
+    transparent 180deg, var(--glow) 250deg, var(--glow-hi) 295deg, transparent 330deg);
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+}
+.js :is(.btn, .hbtn, .finder__submit):is(:hover, :focus-visible) .glow { opacity: 1; animation-play-state: running; }
+@keyframes glow-spin { to { --glow-a: 360deg; } }
+
+/* reduced motion: the glow still shows, it just doesn't turn (core would make it spin at .01ms) */
+@media (prefers-reduced-motion: reduce) {
+  .js .glow { animation: none !important; --glow-a: 45deg; }
+}
+
+/* ---------- photos: wipe up from the bottom while the photo zooms out (130% → 100%) ---------- */
+/* The core clip wipe runs on the frame; the zoom runs on the photo inside it, so both finish together. */
+
+.js :is(.start__photo, .program__media) > img { transition: scale 1.6s var(--ease-out) var(--rd, 0ms); }
+.js .start__photo[data-reveal="clip"]:not(.is-in) > img:not(.start__slide),
+.js .program__media[data-reveal="clip"]:not(.is-in) > img,
+.js .donate__photo[data-reveal="clip"]:not(.is-in) img,
+.js .symposium__crop[data-reveal="clip"]:not(.is-in) img { scale: 1.3; }
+.js :is(.feature__img, .post__thumb)[data-reveal="clip"]:not(.is-in) { object-view-box: inset(12%); }   /* no frame: zoom inside the img box */
+/* impact cards: no wipe, the photo only zooms out (the card itself still rises in) */
+.js .program__media[data-reveal="clip"] { clip-path: none; transition: none; }
+
+/* ---------- photos: slow zoom inside the frame on hover ---------- */
+
+.js .donate__photo img,
+.js .symposium__crop img { transition: scale 1.6s var(--ease-out); }
+.js .symposium__crop img { transform-origin: 51.5% 65%; }   /* = the frame's center, so the zoom doesn't drift */
+.js .donate__photo:hover img,
+.js .symposium__photo:hover .symposium__crop img { scale: 1.06; }
+/* resource images have no clipping frame: zoom inside the img box itself */
+.js .feature__img,
+.js .post__thumb {
+  object-view-box: inset(0);
+  /* keep the core clip transition in the same list, or this rule would drop it */
+  transition: object-view-box 1.6s var(--ease-out), clip-path 1.4s var(--ease-out) var(--rd, 0ms);
+}
+.js .feature:hover .feature__img,
+.js .post:hover .post__thumb { object-view-box: inset(4%); }
+
+/* ---------- impact card links: the rule fills white, the text nudges right, the arrow slides in ---------- */
+/* Rows 2+ get a copy of the row 1 arrow from main.js, and no arrow shows until its row is hovered.
+   The fill comes in from the left and leaves to the right. */
+
+.js .program__links a { display: inline-block; transition: translate .45s var(--ease-out); }
+.js .program__links a::before { content: ''; position: absolute; inset: -7.75px 0 -1px; }   /* whole row is the hit area */
+.js .program__links li::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 1px;
+  background: linear-gradient(var(--white), var(--white)) 100% 0 / 0 100% no-repeat;
+  transition: background-size .6s var(--ease-out);
+  pointer-events: none;
+}
+.js .program__links .i-arrow-ur { pointer-events: none; transition: opacity .3s var(--ease), translate .45s var(--ease-out); }
+.js .program__links .i-arrow-ur { opacity: 0; translate: -10px 10px; }   /* row 1's static arrow too: every arrow is hover-only */
+@media (hover: hover) {
+  .js .program__links li:hover a { translate: 6px 0; }
+  .js .program__links li:hover::after { background-position: 0 0; background-size: 100% 100%; }
+  .js .program__links li:hover .i-arrow-ur { opacity: 1; translate: 0 0; }
+}
+
+/* =========================================================
+   Where do you want to start? (pinned, one screen per path)
+   .is-pinned is set by main.js only on wide screens with a mouse.
+   ========================================================= */
+
+.js .start.is-pinned .wrap { position: sticky; }            /* top + section height come from main.js */
+.js .start.is-pinned .paths { position: relative; isolation: isolate; }
+
+/* the static navy row becomes one block that slides between rows */
+.js .start.is-pinned .paths__item--active a { background: none; border-top-color: transparent; }
+.js .start.is-pinned .paths__item--active::after { background: rgba(112, 112, 112, .3188); }   /* static dark rule belonged to the block */
+.js .paths__hl,
+.js .paths__hover {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  pointer-events: none;
+  transition: translate .45s var(--ease-out), height .45s var(--ease-out), opacity .25s var(--ease);
+}
+.js .paths__hl {
+  border-top: 1px solid rgba(17, 21, 129, .5);   /* same half-covered top row as the static block */
+  background: var(--navy) padding-box;
+}
+.js .paths__hover { z-index: -2; background: var(--row-hover); opacity: 0; }
+.js .paths__hover.is-on { opacity: 1; }
+
+/* rows: same left padding everywhere so the 01-04 numbers fit */
+.js .start.is-pinned .paths__item a { padding-left: 52.54px; transition: color .35s var(--ease); }
+.js .start.is-pinned .paths__item:not(.is-on) a { color: var(--ink); }
+.js .start.is-pinned .paths em { transition: color .35s var(--ease); }
+.js .start.is-pinned .paths__item.is-on a,
+.js .start.is-pinned .paths__item.is-on em { color: var(--white); }
+.js .paths__num {
+  display: inline-block;
+  width: 32.54px;
+  margin-left: -32.54px;
+  font: 700 14px/1 var(--f-head);
+  letter-spacing: var(--ls-eyebrow);
+  color: rgba(27, 45, 73, .4);
+  vertical-align: 6px;
+  transition: color .35s var(--ease);
+}
+.js .paths__item.is-on .paths__num { color: var(--mint); }
+
+/* arrows: the active row's arrow slides in; hovered rows show a navy one */
+.js .start.is-pinned .paths__item .i-arrow-bold {
+  opacity: 0;
+  translate: -14px 0;
+  color: var(--navy);
+  transition: opacity .3s var(--ease), translate .45s var(--ease-out), color .3s var(--ease);
+}
+.js .start.is-pinned .paths__arrow-clone { position: absolute; top: var(--arrow-top); left: 449.54px; width: 38.658px; height: 38.658px; }
+.js .start.is-pinned .paths__item.is-on .i-arrow-bold { opacity: 1; translate: 0 0; color: var(--white); }
+.js .start.is-pinned .paths__item.is-hover:not(.is-on) .i-arrow-bold { opacity: 1; translate: 0 0; }
+
+/* photo swap: when the step changes, the new photo fades in over the previous one while it zooms out, 112% → 100% (timed, plays in reverse going back) */
+.js .start__photo img.start__slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: none;
+  opacity: 0;
+  scale: 1.12;
+  will-change: opacity, scale;
+  transition: opacity .9s var(--ease), scale 1.6s var(--ease-out);
+}
+.js .start__photo img.start__slide.is-shown { opacity: 1; scale: 1; }
+
+/* card: the old copy drops out while the white panel wipes away downward (0 → .35s), the panel wipes back up
+   from the bottom (.35 → .95s), then the new title's lines rise out of a mask and the paragraph and Read more fade up.
+   Pinned mode only; the card's own scroll reveal is unchanged. */
+.js .start.is-pinned .start__card.is-swap { animation: card-swap .95s; }
+@keyframes card-swap {
+  0% { clip-path: inset(0 0 0 0); animation-timing-function: cubic-bezier(.65, 0, .35, 1); }
+  37% { clip-path: inset(100% 0 0 0); animation-timing-function: cubic-bezier(.16, 1, .3, 1); }
+  100% { clip-path: inset(0 0 0 0); }
+}
+.js .start__card-body.is-off { opacity: 0; pointer-events: none; transition: opacity .25s var(--ease); }
+.js .start.is-pinned .start__card-body h3 .w { display: inline-block; clip-path: inset(-.3em -.2em -.24em -.2em); }
+.js .start.is-pinned .start__card-body h3 .w__i {
+  display: inline-block;
+  transform-origin: 0 100%;
+  transition: translate 1s var(--ease-out) calc(600ms + var(--li, 0) * 110ms), rotate 1s var(--ease-out) calc(600ms + var(--li, 0) * 110ms);
+}
+.js .start.is-pinned .start__card-body :is(p, .readmore) { transition: opacity .6s var(--ease) 800ms, translate .9s var(--ease-out) 800ms; }
+.js .start.is-pinned .start__card-body .readmore { transition-delay: 920ms; }
+.js .start.is-pinned .start__card-body.is-off h3 .w__i { translate: 0 112%; rotate: 5deg; transition-duration: .3s; transition-delay: 0ms; }
+.js .start.is-pinned .start__card-body.is-off :is(p, .readmore) { opacity: 0; translate: 0 18px; transition-duration: .25s; transition-delay: 0ms; }
+.js .start__card-body.is-clone { position: absolute; top: var(--card-pt); left: var(--card-pl); right: var(--card-pr); }
+
+/* not pinned (small screens, touch, reduced motion): the built pieces stay out of the way */
+.js .start:not(.is-pinned) :is(.paths__hl, .paths__hover, .paths__num, .start__slide, .paths__arrow-clone, .start__card-body.is-clone) { display: none; }
+
+@media (max-width: 1439.98px) {
+  .js .start.is-pinned .paths__arrow-clone { left: auto; right: 26.34px; }
+  .js .browse__btn { position: relative; }
+}
+
+/* =========================================================
+   By the numbers (pinned, one screen per stat)
+   ========================================================= */
+
+.js .numbers.is-pinned { display: block; min-height: 0; overflow: visible; }   /* overflow: hidden would kill sticky */
+.js .numbers.is-pinned .numbers__stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: clip;
+}
+.js .numbers.is-pinned .numbers__bg img { transform-origin: 50% 60%; will-change: scale; }
+
+.js .bignum__plus { transition: opacity .3s var(--ease); }
+.js .bignum.no-plus .bignum__plus { opacity: 0; }
+.js .bignum__value { font-variant-numeric: tabular-nums; transition: translate .5s var(--ease-out); }
+/* no +: the number slides into the space the + leaves, so it ends flush right (--plus-shift is measured in main.js) */
+.js .bignum.no-plus .bignum__value { translate: var(--plus-shift, 50px) 0; }
+
+.js .bignum__caption { transition: opacity .35s var(--ease), translate .55s var(--ease-out); }
+.js .bignum__caption.is-out { opacity: 0; translate: 0 -10px; transition-duration: .25s; }
+.js .bignum__caption.is-pre { opacity: 0; translate: 0 14px; transition: none; }
+
+/* bottom rail: one bar per stat fills while it counts; finished stats stay bright */
+.js .numbers.is-pinned .stats::after { display: none; }
+.js .numbers.is-pinned .stats__item { opacity: .67; transition: opacity .4s var(--ease); }
+.js .numbers.is-pinned .stats__item.is-lit { opacity: 1; }
+.js .stats__bar {
+  position: absolute;
+  top: 0;
+  left: calc(var(--i) * 25%);
+  width: calc(25% - 4px);
+  height: 4px;
+  background: linear-gradient(rgba(19, 144, 52, .5) 0 1px, var(--mint) 1px 3px, rgba(19, 144, 52, .5) 3px 4px);
+  transform-origin: 0 50%;
+  scale: 0 1;
+}
+.js .numbers:not(.is-pinned) .stats__bar { display: none; }
+
+/* =========================================================
+   Partners: logo strip loops right to left, pauses on hover
+   ========================================================= */
+
+/* See All Partners: hover only over the words + arrow (same centered spot), the arrow nudges right */
+.js .partners__all { width: fit-content; margin-inline: auto; }
+.js .partners__all .i-arrow-light { transition: translate .45s var(--ease-out); }
+.js .partners__all:is(:hover, :focus-visible) .i-arrow-light { translate: 6px 0; }
+
+.js .partners.is-marquee .marquee { position: absolute; top: 175px; left: 0; right: 0; height: 95px; overflow: hidden; }
+.js .partners.is-marquee .logos {
+  position: static;
+  display: flex;
+  align-items: center;
+  width: max-content;
+  height: 100%;
+  margin: 0;
+  gap: 0;
+  animation: logos-loop 40s linear infinite;
+}
+.js .partners.is-marquee .marquee:hover .logos { animation-play-state: paused; }
+.js .partners.is-marquee .logos li {
+  position: static;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  height: 100%;
+  margin: 0;
+  padding: 0 28px;
+  transform: none;
+  transition: background .35s var(--ease);
+}
+.js .partners.is-marquee .logos li:hover { background: var(--row-hover); }
+.js .partners.is-marquee .logos img { filter: grayscale(1); opacity: .7; transition: filter .45s var(--ease), opacity .45s var(--ease); }
+.js .partners.is-marquee .logos li:hover img { filter: none; opacity: 1; }
+.js .partners.is-marquee .logos__fade { display: block; top: 0; bottom: auto; z-index: 2; height: 100%; pointer-events: none; }
+.js .partners.is-marquee .logos__fade--left { left: 0; right: auto; }
+.js .partners.is-marquee .logos__fade--right { left: auto; right: 0; }
+@keyframes logos-loop { to { translate: -50% 0; } }
+
+@media (max-width: 1439.98px) {
+  .js .partners.is-marquee .marquee { position: relative; top: auto; margin-top: 25px; }
+}
+@media (max-width: 639.98px) {
+  .js .partners.is-marquee .marquee { height: 80px; }
+  .js .partners.is-marquee .logos li { padding: 0 18px; }
+  .js .partners.is-marquee .logos img { scale: .8; }
+}
