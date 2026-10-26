@@ -65,7 +65,6 @@
       const arrow0 = $('.i-arrow-bold', items[0]);
       items.forEach((li, i) => {
         const a = $('a', li);
-        a.insertAdjacentHTML('afterbegin', `<span class="paths__num" aria-hidden="true">${String(i + 1).padStart(2, '0')}</span>`);
         if (i) {
           const c = arrow0.cloneNode(true);
           c.classList.add('paths__arrow-clone');

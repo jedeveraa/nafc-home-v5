@@ -241,7 +241,7 @@ button, input, select { font: inherit; color: inherit; margin: 0; }
 .start { height: 936px; }
 .start .wrap { height: 936px; }
 .start__main { padding-top: 95px; width: 514.54px; }
-.start__title { width: 444.08px; margin-top: 32px; margin-left: -0.08px; font: 700 65px/73px var(--f-head); letter-spacing: var(--ls-tight); color: var(--ink); }
+.start__title { width: 444.08px; margin-top: 0; margin-left: -0.08px; font: 700 65px/73px var(--f-head); letter-spacing: var(--ls-tight); color: var(--ink); }
 .paths { margin-top: 18px; }
 .paths a { display: block; font: 700 32px/63px var(--f-head); letter-spacing: var(--ls-tight); color: var(--ink); white-space: nowrap; }
 .paths em { font-style: normal; }

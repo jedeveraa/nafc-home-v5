@@ -167,24 +167,13 @@
 .js .paths__hover { z-index: -2; background: var(--row-hover); opacity: 0; }
 .js .paths__hover.is-on { opacity: 1; }
 
-/* rows: same left padding everywhere so the 01-04 numbers fit */
-.js .start.is-pinned .paths__item a { padding-left: 52.54px; transition: color .35s var(--ease); }
+/* rows: text sits at the static 25.54px inset and slides to the navy block's 52.54px when its row is on */
+.js .start.is-pinned .paths__item a { padding-left: 25.54px; transition: color .35s var(--ease), padding-left .45s var(--ease-out); }
+.js .start.is-pinned .paths__item.is-on a { padding-left: 52.54px; }
 .js .start.is-pinned .paths__item:not(.is-on) a { color: var(--ink); }
 .js .start.is-pinned .paths em { transition: color .35s var(--ease); }
 .js .start.is-pinned .paths__item.is-on a,
 .js .start.is-pinned .paths__item.is-on em { color: var(--white); }
-.js .paths__num {
-  display: inline-block;
-  width: 32.54px;
-  margin-left: -32.54px;
-  font: 700 14px/1 var(--f-head);
-  letter-spacing: var(--ls-eyebrow);
-  color: rgba(27, 45, 73, .4);
-  vertical-align: 6px;
-  transition: color .35s var(--ease);
-}
-.js .paths__item.is-on .paths__num { color: var(--mint); }
-
 /* arrows: the active row's arrow slides in; hovered rows show a navy one */
 .js .start.is-pinned .paths__item .i-arrow-bold {
   opacity: 0;
@@ -234,7 +223,7 @@
 .js .start__card-body.is-clone { position: absolute; top: var(--card-pt); left: var(--card-pl); right: var(--card-pr); }
 
 /* not pinned (small screens, touch, reduced motion): the built pieces stay out of the way */
-.js .start:not(.is-pinned) :is(.paths__hl, .paths__hover, .paths__num, .start__slide, .paths__arrow-clone, .start__card-body.is-clone) { display: none; }
+.js .start:not(.is-pinned) :is(.paths__hl, .paths__hover, .start__slide, .paths__arrow-clone, .start__card-body.is-clone) { display: none; }
 
 @media (max-width: 1439.98px) {
   .js .start.is-pinned .paths__arrow-clone { left: auto; right: 26.34px; }
