@@ -175,7 +175,7 @@ button, input, select { font: inherit; color: inherit; margin: 0; }
 
 .finder { flex: none; height: 165px; background: var(--paper); }
 .finder__form { display: flex; align-items: flex-start; padding-top: 41px; }
-.finder__title { width: 185px; flex: none; margin-top: 15px; font: 700 21px/28px var(--f-head); color: var(--green); white-space: nowrap; }
+.finder__title { width: 185px; flex: none; margin-top: 15px; font: 700 21px/28px var(--f-head); color: var(--navy); white-space: nowrap; }
 .field { position: relative; flex: none; }
 .field label {
   display: block;
@@ -241,10 +241,10 @@ button, input, select { font: inherit; color: inherit; margin: 0; }
 .start { height: 936px; }
 .start .wrap { height: 936px; }
 .start__main { padding-top: 95px; width: 514.54px; }
-.start__title { width: 444.08px; margin-top: 32px; margin-left: -0.08px; font: 700 65px/73px var(--f-head); letter-spacing: var(--ls-tight); color: var(--green); }
+.start__title { width: 444.08px; margin-top: 32px; margin-left: -0.08px; font: 700 65px/73px var(--f-head); letter-spacing: var(--ls-tight); color: var(--ink); }
 .paths { margin-top: 18px; }
 .paths a { display: block; font: 700 32px/63px var(--f-head); letter-spacing: var(--ls-tight); color: var(--ink); white-space: nowrap; }
-.paths em { font-style: normal; color: var(--green); }
+.paths em { font-style: normal; }
 .paths__item { position: relative; }
 /* rule under each option: #707070, 1px crisp (XD centers it on .5) */
 .paths__item::after { content: ""; display: block; height: 1px; margin-left: 5.54px; background: rgba(112, 112, 112, 0.3188); }
@@ -331,7 +331,7 @@ button, input, select { font: inherit; color: inherit; margin: 0; }
 .impact { height: 939px; }
 .impact .wrap { padding-top: 59px; }
 .impact__head { position: relative; height: 241px; }
-.impact__title { width: 555px; margin-top: 27px; font: 700 65px/73px var(--f-head); letter-spacing: var(--ls-tight); color: var(--green); }
+.impact__title { width: 555px; margin-top: 27px; font: 700 65px/73px var(--f-head); letter-spacing: var(--ls-tight); color: var(--ink); }
 .impact__intro { position: absolute; left: 761px; top: 35px; width: 539px; }
 .impact__intro p { font: 400 20px/35px var(--f-body); color: var(--ink); }
 .impact__intro .btn { margin-top: 18px; }
@@ -339,7 +339,6 @@ button, input, select { font: inherit; color: inherit; margin: 0; }
 .programs { display: grid; grid-template-columns: repeat(3, 428px); column-gap: 16px; }
 .program { position: relative; height: 562px; padding: 134px 0 0 28px; color: var(--white); }
 .program--navy { background: var(--navy); }
-.program--green { background: var(--green); }
 .program__media { position: absolute; left: 0; top: 0; width: 428px; height: 224px; overflow: hidden; }
 .program__media img { position: absolute; left: 0; top: 50%; width: 428px; height: auto; max-width: none; transform: translateY(-50%); }
 .program__media svg { position: absolute; inset: 0; width: 100%; height: 100%; }
@@ -527,7 +526,7 @@ button, input, select { font: inherit; color: inherit; margin: 0; }
   height: 40px;
   padding-top: 10px;
   border-radius: 5px;
-  background: var(--green);
+  background: var(--navy);
   font: 400 18px/21px var(--f-head);
   color: var(--white);
   text-align: center;
